@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Create New Hader -->
+        <referenceContainer name="header-wrapper">
+            <container name="header.left" htmlTag="div" htmlClass="header-left"/>
+            <container name="header.middle" htmlTag="div" htmlClass="header-middle"/>
+            <container name="header.right" htmlTag="div" htmlClass="header-right"/>
+        </referenceContainer>
+        <!-- Move Logo Element Into Header Left Container -->
+        <move element="logo" destination="header.left" before="-"/>
+        <!-- Move Navigation Element Into Header Middle Container -->
+        <move element="navigation.sections" destination="header.middle" before="-"/>
+        <!-- Move Elements Into Header Right Container -->
+        <move element="top.search" destination="header.right" before="-"/>
+        <move element="minicart" destination="header.right" after="top.search"/>
+        <move element="authorization-link-login" destination="header.right" after="-"/>
+        <!-- Remove Header Compare Link -->
+        <referenceContainer name="compare-link-wrapper" remove="true" />
+        <!-- Remove Header Panel Container -->
+        <referenceContainer name="header.panel.wrapper" remove="true" />
+        <!-- Remove Footer Container -->
+        <referenceContainer name="footer-container" remove="true" />
+        <!-- Remove Copyright Block -->
+        <referenceBlock name="copyright" remove="true" />
+    </body>
+</page>

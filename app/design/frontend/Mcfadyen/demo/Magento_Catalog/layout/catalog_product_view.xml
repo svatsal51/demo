@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Product Layout Changes -->
+        <referenceContainer name="main">
+            <container name="product.content.wrapper" htmlTag="div" htmlClass="product-content-wrapper" htmlId="product-content-wrapper" />
+        </referenceContainer>
+        <move element="product.info.media" destination="product.content.wrapper" before="-" />
+        <move element="product.info.main" destination="product.content.wrapper" after="product.info.media" />
+        <move element="product.info.details" destination="product.content.wrapper" after="-" />
+       <move element="product.info.overview" destination="product.info.main" after="page.main.title" />      
+
+        <!-- Add Tabs-->
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.delivery" as="delivery" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getDelivery</argument>
+                    <argument name="at_code" xsi:type="string">delivery</argument>
+                    <argument name="css_class" xsi:type="string">delivery</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Delivery</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.fit" as="fit" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getFit</argument>
+                    <argument name="at_code" xsi:type="string">fit</argument>
+                    <argument name="css_class" xsi:type="string">fit</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Fit</argument>
+                    <argument name="sort_order" xsi:type="string">30</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.share" as="share" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getShare</argument>
+                    <argument name="at_code" xsi:type="string">share</argument>
+                    <argument name="css_class" xsi:type="string">share</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Share</argument>
+                    <argument name="sort_order" xsi:type="string">40</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="main">
+            <container name="product.bottom.wrapper" htmlTag="div" as="product-bottom" htmlClass="product-bottom" after="-">
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.producttags" template="Magento_Catalog::product/view/attribute.phtml">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getTags</argument>
+                        <argument name="at_code" xsi:type="string">tags</argument>
+                        <argument name="css_class" xsi:type="string">tags</argument>
+                       
+                    </arguments>
+                </block>
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.note" template="Magento_Catalog::product/view/attribute.phtml" after="-">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getEditorNote</argument>
+                        <argument name="at_code" xsi:type="string">editor_note</argument>
+                        <argument name="css_class" xsi:type="string">note</argument>
+                       
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>    
+
+        <!-- Remove Stuffs -->
+        <referenceBlock name="breadcrumbs" remove="true" />        
+        <referenceBlock name="product.attributes" remove="true" />        
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />        
+        <referenceBlock name="product.info.stock.sku" remove="true" />        
+        <referenceBlock name="view.addto.compare" remove="true" />
+    </body>
+</page>

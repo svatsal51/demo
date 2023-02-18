@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+//$images = $block->getGalleryImages()->getItems();
+$images = json_decode($block->getGalleryImagesJson(),true);
+?>
+
+<ul id="mobslider" class="gallery">
+    <?php foreach ($images as $i => $image): ?>
+        <li>
+            <?php $altText = $image['caption'] ? $image['caption'] : $product->getName(); ?>
+            <img src="<?php echo $image['img']?>" alt="<?php echo $altText ?>">
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<script type="text/x-magento-init">
+ {
+     "#mobslider": {
+        "carousel": {
+            "autoplay":false,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "dots":true,
+            "arrows":false
+        }
+    }
+ }
+ </script>
